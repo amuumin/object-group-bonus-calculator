@@ -60,57 +60,59 @@ console.log('array of employee data: ',  employees );
 //
 
 function calculateIndividualEmployeeBonus( person, array ) {  
-    let bonus = 0;
-    
+    let ratingBonus = 0;
+    let employeeNumberBonus = 0;
+    let annualSalaryBonus = 0;
+    let totalBonus = 0;
+
   for (let employed of array){
     if (employed.name === person){
 
       if (employed.reviewRating <= 2){
-        bonus = 0;
+        ratingBonus = 0;
       }
       else if (employed.reviewRating === 3){
-        bonus = employed.annualSalary * (0.04 );
+        ratingBonus = employed.annualSalary * (0.04 );
       }
       else if (employed.reviewRating === 4){
-        bonus = employed.annualSalary * (0.06);
+        ratingBonus = employed.annualSalary * (0.06);
   
         }
       else if (employed.reviewRating === 5){
-         bonus = employed.annualSalary * (0.1);
+         ratingBonus = employed.annualSalary * (0.1);
     
          }
-         
+         if (employed.employeeNumber <= 9999){
+          employeeNumberBonus = (employed.annualSalary * (0.05))
+          
+         }
+         if (employed.annualSalary > 65000){
+          annualSalaryBonus = (employed.annualSalary * (0.01))
+         }
         }
+        totalBonus = ratingBonus + employeeNumberBonus - annualSalaryBonus;
+
+        if (totalBonus > (0.13 * employed.annualSalary)){
+          totalBonus = (0.13 * employed.annualSalary); 
+          return totalBonus;
+        }
+        
+         else if (totalBonus < 0){
+            totalBonus = 0;
+          }
+          
+        }
+        return totalBonus;
       }
-       return bonus;
-      }
+       
+    
 
 
   console.log(calculateIndividualEmployeeBonus('Jem', employees));
 
 
 
-      // if (employed.reviewRating <= 2){
-      //   bonus = 0
-      // }
-      // // return money;
-      // if (employed.reviewRating == 3){
-      // bonus = employed.annualSalary * (0.04 )
-      // }
-
-      // if (employed.reviewRating == 4){
-      // bonus = employed.annualSalary * (0.06)
-
-      // }
-
-      // if (employed.reviewRating == 5){
-      // bonus = employed.annualSalary * (0.1)
-
-      // }
-      
-      // return bonus;
-      
-  
+     
 
   
   // your logic here
